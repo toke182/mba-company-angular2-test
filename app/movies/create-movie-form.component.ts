@@ -1,5 +1,6 @@
-import {Component} from "@angular/core";
-import {MoviesService} from "./movies.service";
+import {Component, Input, OnInit, Output} from "@angular/core";
+import {EventEmitter} from "@angular/common/src/facade/async";
+// import {MoviesService} from "./movies.service";
 
 @Component({
     selector: 'create-movie-form',
@@ -15,19 +16,22 @@ import {MoviesService} from "./movies.service";
             background-color: #ccc;
         }
     `],
-    templateUrl: "app/movies/create-movie-form.component.html",
-    providers: [
-        MoviesService
-    ],
+    templateUrl: "app/movies/create-movie-form.component.html"
 
 })
-export class CreateMovieFormComponent {
-    private movieCategoryListing : Object = this.moviesService.getMovieCategoriesList();
-    private categories : String[] = Object.keys(this.movieCategoryListing);
-    private selectedCategory: String = "action";
-    private actors : Object[] = [{name: null, salary: null}];
+export class CreateMovieFormComponent implements OnInit {
+    @Input() movieCategoryListing;
+    @Output() addNewMovie = new EventEmitter();
 
-    constructor(private moviesService:MoviesService) {
+    private categories : String[];
+    private selectedCategory: String;
+    private actors : Object[];
+    private movieForm : Object = {};
+
+    ngOnInit() {
+        this.categories = Object.keys(this.movieCategoryListing);
+        this.selectedCategory = "action";
+        this.actors = [{name: null, salary: null}];
     }
 
     addNewEmptyActorRow() {
@@ -40,8 +44,17 @@ export class CreateMovieFormComponent {
         }
     }
 
-    onSubmit($event, form) {
-        console.log($event);
-        console.log(form);
+    onSubmit() {
+        console.log(this.movieForm);
+        this.addNewMovie.emit({
+            name: 'Star Wars The Force Awakens',
+            genre: 'Sci-fi',
+            totalActorsPrice: 30000000,
+            actors: [
+                {name: 'Harrison ford', netWorth: 20000000},
+                {name: 'Mark Hamil', netWorth: 7000000},
+                {name: 'Carrier Fisher', netWorth: 3000000}
+            ]
+        });
     }
 }

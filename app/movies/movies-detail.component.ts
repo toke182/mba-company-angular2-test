@@ -1,7 +1,5 @@
-import {Component} from "@angular/core";
-import { OnInit } from '@angular/core';
+import {Component, Input} from "@angular/core";
 import {MovieCardComponent} from "./movie-card.component";
-import {MoviesService} from "./movies.service";
 
 @Component({
     selector: 'movies-detail',
@@ -17,14 +15,11 @@ import {MoviesService} from "./movies.service";
         </div>
         <ul class="movie-card-list list-unstyled">
             <li *ngFor="let movie of movieListing">
-                <movie-card [movie]="movie"></movie-card>
+                <movie-card (cardsChange)="sortMovies()" [movie]="movie"></movie-card>
             </li>
         </ul>
     `,
     directives: [MovieCardComponent],
-    providers: [
-        MoviesService
-    ],
     styles: [`
         .movie-card-list {
             margin: 20px 0 20px;
@@ -32,16 +27,13 @@ import {MoviesService} from "./movies.service";
     `]
 
 })
-export class MoviesDetailComponent implements OnInit {
-    private movieListing : Object[] = this.moviesService.getMoviesList();
+export class MoviesDetailComponent {
+    @Input() movieListing;
     private sorting = "priceHighToLow";
-    constructor(private moviesService:MoviesService) {}
 
-    ngOnInit() {
+    sortMovies(sortingMethod) {
+        this.sorting = sortingMethod || this.sorting;
 
-    }
-
-    sortMovies() {
         switch (this.sorting) {
             case 'priceHighToLow':
                 this.movieListing.sort(function(a, b){

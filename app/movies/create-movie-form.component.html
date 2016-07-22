@@ -1,4 +1,4 @@
-<form #f="ngForm" (ngSubmit)="onSubmitMovie($event, f.form)" class="create-movie">
+<form #f="ngForm" (submit)="onSubmit($event, f.form)" class="create-movie">
     <fieldset>
         <legend class="sr-only">Movie details</legend>
         <!-- Title -->
