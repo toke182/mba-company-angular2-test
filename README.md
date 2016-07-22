@@ -33,7 +33,7 @@ the one way flow, that simplifies readability of the code and sync between
 components without interdependecies and for me the best of the react properties,
 use of the shadow DOM, so all the DOM manipulation is made in an extremely efficient way.
 
-#### So, then Now why Angular 2?
+#### So then, why Angular 2?
 
 Well is a technology I read about and I was very interested experimenting
 with it, furthermore, it has the best of both worlds (React/Angular) as it is build thinking on following
