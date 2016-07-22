@@ -1,8 +1,15 @@
 # Frontend Test For MBA Company
 
+This is a frontend test for the MBA company.
+
+Tech stack:
+
+- Angular 2.
+- Typescript.
+- npm.
 
 
-# Installation
+## Installation
 
 Clone this repo
 `npm i` and `npm start` and you are ready!
@@ -26,7 +33,7 @@ the one way flow, that simplifies readability of the code and sync between
 components without interdependecies and for me the best of the react properties,
 use of the shadow DOM, so all the DOM manipulation is made in an extremely efficient way.
 
-So, Now why Angular 2?
+2. So, then Now why Angular 2?
 
 Well is a technology I read about and I was very interested experimenting
 with it, furthermore, it has the best of both worlds (React/Angular) as it is build thinking on following
@@ -34,7 +41,7 @@ flux patterns to evade previous problems with interdependencies and it has all t
 angular gives you (pipes, directives, routing, services...).
 
 
-2. Problems found using angular 2
+3. Problems found using angular 2
 
 It is a technology in a very early stage, it is still in RC4, so there is no much documentation and is difficult
 to find quick solutions to the problems.
@@ -51,7 +58,7 @@ reasons...
 
 For all this reasons I have been unable to finish the test in such a short amount of time.
 
-3. Style decisions
+4. Style decisions
 
 I used bootstrap for the design and griding system so there was no reason to have SASS/LESS in the project as I keep
 bootstrap styling and component based styling provided by angular 2.
@@ -59,5 +66,8 @@ bootstrap styling and component based styling provided by angular 2.
 As the Actor Salary form design isn't very good for mobile devices, I took the decision of give it another look for
 small screens, making sure that The user is able to identify what are they writing in each input and they have enough
 space for it in mobile vertical view.
+
+Is worth mention that there is a couple of classes in the form component that extends form and bootstrap css, and I was
+planing to have them shared by all components after an small refactor, but I didn't have time to do so.
 
 Kept default margin/spacing of bootstrap components themselves, so it might vary from the UX wireframe.
