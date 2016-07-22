@@ -1,0 +1,142 @@
+<form #f="ngForm" (ngSubmit)="onSubmitMovie($event, f.form)" class="create-movie">
+    <fieldset>
+        <legend class="sr-only">Movie details</legend>
+        <!-- Title -->
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input
+                    name="title"
+                    #title="ngForm"
+                    ngControl="title"
+                    required
+                    maxlength="30"
+                    type="text"
+                    id="title"
+                    class="form-control"
+                    placeholder="Pulp fiction"
+            />
+            <!--title validation-->
+            <div class="text-danger">
+                <div *ngIf="!title.pristine && title.errors?.required">
+                    Title is required.
+                </div>
+                <div *ngIf="!title.pristine && title.errors?.maxlength">
+                    Title should be maximum 30 chars
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Category -->
+            <div class="col-md-6 form-group">
+                <div class="row">
+                    <label class="col-xs-12" for="category">Category</label>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <select
+                                [(ngModel)]="selectedCategory"
+                                class="form-control"
+                                name="category"
+                                id="category">
+                            <option *ngFor="let category of categories" [value]="category">{{category}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!--Subcategory-->
+            <div class="col-md-6 form-group">
+                <div class="row">
+                    <label class="col-xs-12" for="subcategory">
+                        Subcategory
+                    </label>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <select
+                                class="form-control"
+                                name="subcategory"
+                                id="subcategory">
+                            <option [selected]="true">select one...</option>
+                            <option *ngFor="let subcategory of movieCategoryListing[selectedCategory]; let i = index">
+                                {{subcategory}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <label>Cast</label>
+        <fieldset class="well well-dark">
+            <legend class="sr-only">Cast Details</legend>
+            <div class="row form-group hidden-xs hidden-sm">
+                <label class="col-md-5">Actor</label>
+                <label class="col-md-5">Salary ($)</label>
+            </div>
+
+            <!--Add Actor Rows -->
+            <div class="row" *ngFor="let actor of actors; let i = index">
+                <!--Actor Name-->
+                <div class="form-group col-xs-6 col-md-5">
+                    <label for="actor-name" class="hidden-md hidden-lg">
+                        Actor
+                    </label>
+                    <input
+                            [(ngModel)]="actor.name"
+                            name="actorName"
+                            #actorName="ngForm"
+                            ngControl="actorName"
+                            required
+                            maxlength="30"
+                            type="text"
+                            class="form-control"
+                            id="actor-name" />
+                    <!--actor name validation-->
+                    <div class="text-danger">
+                        <div *ngIf="!actorName.pristine && actorName.errors?.required">
+                            Insert actor name.
+                        </div>
+                        <div *ngIf="!actorName.pristine && actorName.errors?.maxlength">
+                            Actor name should be maximum 30 chars
+                        </div>
+                    </div>
+                </div>
+                <!--Actor Salary-->
+                <div class="form-group col-xs-6 col-md-5">
+                    <label for="actor-salary" class="hidden-md hidden-lg">
+                        Salary ($)
+                    </label>
+                    <input
+                            [(ngModel)]="actor.salary"
+                            name="actorSalary"
+                            #actorSalary="ngForm"
+                            ngControl="actorSalary"
+                            required
+                            type="text"
+                            class="form-control"
+                            id="actor-salary"/>
+                    <!--actor name validation-->
+                    <div class="text-danger">
+                        <div *ngIf="!actorSalary.pristine && actorSalary.errors?.required">
+                            Insert a Salary.
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-xs-12 col-md-2">
+                    <button
+                            (click)="removeActorRow(i)"
+                            class="btn btn-block btn-danger"
+                            type="button">-</button>
+                </div>
+            </div>
+
+            <!--Add New Actor Button-->
+            <div class="row">
+                <div class="col-md-2">
+                    <button (click)="addNewEmptyActorRow()" class="btn btn-success" type="button">+</button>
+                </div>
+            </div>
+        </fieldset>
+        <button class="btn btn-success" type="submit">CREATE</button>
+    </fieldset>
+</form>
