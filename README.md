@@ -16,7 +16,7 @@ Clone this repo
 
 ## Questions & Answers
 
-1. Why angular 2?
+#### Why angular 2?
 
 Well lets start by the technologies I have used/experimented with.
 
@@ -33,7 +33,7 @@ the one way flow, that simplifies readability of the code and sync between
 components without interdependecies and for me the best of the react properties,
 use of the shadow DOM, so all the DOM manipulation is made in an extremely efficient way.
 
-2. So, then Now why Angular 2?
+#### So, then Now why Angular 2?
 
 Well is a technology I read about and I was very interested experimenting
 with it, furthermore, it has the best of both worlds (React/Angular) as it is build thinking on following
@@ -41,7 +41,7 @@ flux patterns to evade previous problems with interdependencies and it has all t
 angular gives you (pipes, directives, routing, services...).
 
 
-3. Problems found using angular 2
+#### Problems found using angular 2
 
 It is a technology in a very early stage, it is still in RC4, so there is no much documentation and is difficult
 to find quick solutions to the problems.
@@ -58,7 +58,7 @@ reasons...
 
 For all this reasons I have been unable to finish the test in such a short amount of time.
 
-4. Style decisions
+#### Style decisions
 
 I used bootstrap for the design and griding system so there was no reason to have SASS/LESS in the project as I keep
 bootstrap styling and component based styling provided by angular 2.
